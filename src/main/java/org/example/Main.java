@@ -2,8 +2,11 @@ package org.example;
 
 import org.example.container.SubjectContainer;
 import org.example.data.Subject;
+import org.example.data.SubjectResult;
+import org.example.util.SubjectComparator;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,5 +27,13 @@ public class Main {
                 new Subject("Inżynieria oprogramowania", "Tomasz Kamiński"),
                 new Subject("Projekt zespołowy", "Barbara Pawlak")
         ));
+
+        int n = 10;
+        List<SubjectResult> top10Subjects = SubjectComparator.findTopSubjects(subjectContainer.getSubjects(), n);
+
+        System.out.printf("Top %d przedmiotów z największą liczbą wspólnych liter: \n", n);
+        for (int i = 0; i < top10Subjects.size(); i++) {
+            System.out.printf("%d. %s\n", i + 1, top10Subjects.get(i));
+        }
     }
 }
