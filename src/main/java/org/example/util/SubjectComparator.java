@@ -17,7 +17,7 @@ public class SubjectComparator {
     public static List<SubjectResult> findTopSubjects(List<Subject> subjects, int n){
         List<SubjectResult> results = new ArrayList<>();
 
-        if(subjects == null || subjects.isEmpty()){
+        if(subjects == null || subjects.isEmpty() || n <= 0){
             return results;
         }
 
@@ -26,7 +26,7 @@ public class SubjectComparator {
             results.add(new SubjectResult(subject, commonLetters));
         });
 
-        results.sort((a, b) -> Integer.compare(a.commonLetters(), b.commonLetters()));
+        results.sort((a, b) -> Integer.compare(b.commonLetters(), a.commonLetters()));
         return results.subList(0, Math.min(n, results.size()));
     }
 }
