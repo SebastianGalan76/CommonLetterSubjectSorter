@@ -1,22 +1,22 @@
 package org.example.container;
 
-import org.example.data.Subject;
+import org.example.data.Course;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SubjectContainer {
-    private final List<Subject> subjects;
+    private final List<Course> courses;
 
     public SubjectContainer(){
-        subjects = new ArrayList<>();
+        courses = new ArrayList<>();
     }
 
-    public void addAll(List<Subject> newSubjects){
-        this.subjects.addAll(newSubjects);
+    public void addAll(List<Course> newCourses){
+        this.courses.addAll(newCourses);
     }
 
-    public List<Subject> getSubjects(){
-        return subjects;
+    public List<Course> getSubjects(){
+        return courses;
     }
 }

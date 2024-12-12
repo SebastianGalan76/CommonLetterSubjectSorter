@@ -1,7 +1,7 @@
 package util;
 
-import org.example.data.Subject;
-import org.example.data.SubjectResult;
+import org.example.data.Course;
+import org.example.data.CourseResult;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -26,21 +26,21 @@ public class SubjectComparatorTest {
 
     @Test
     public void findTopSubjects_oneSubject(){
-        Subject subject = new Subject("Programowanie obiektowe", "Jan Kowalski");
-        List<SubjectResult> result = findTopSubjects(List.of(subject), 10);
+        Course course = new Course("Programowanie obiektowe", "Jan Kowalski");
+        List<CourseResult> result = findTopSubjects(List.of(course), 10);
         assertEquals(1, result.size(), "Wynik dla jednego przedmiotu powinien mieć jeden element");
 
-        SubjectResult topSubjectResult = result.get(0);
-        assertEquals(subject.name() +" "+subject.instructor(), topSubjectResult.subject().name() +" "+topSubjectResult.subject().instructor());
+        CourseResult topCourseResult = result.get(0);
+        assertEquals(course.name() +" "+ course.instructor(), topCourseResult.course().name() +" "+ topCourseResult.course().instructor());
     }
 
     @Test
     public void findTopSubjects_multipleSubjects(){
-        Subject subject1 = new Subject("aaa", "aab");
-        Subject subject2 = new Subject("aaa", "aaa");
-        Subject subject3 = new Subject("abc", "def");
+        Course course1 = new Course("aaa", "aab");
+        Course course2 = new Course("aaa", "aaa");
+        Course course3 = new Course("abc", "def");
 
-        List<SubjectResult> result = findTopSubjects(Arrays.asList(subject1, subject2, subject3), 10);
+        List<CourseResult> result = findTopSubjects(Arrays.asList(course1, course2, course3), 10);
         assertEquals(3, result.size(), "Wynik dla trzech przedmiotów powinien mieć 3 elementy");
 
         assertEquals(3, result.get(0).commonLetters());
