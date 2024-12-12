@@ -3,6 +3,7 @@ package org.example.api.courses;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.example.api.ApiClient;
+import org.example.exception.ApiResponseException;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -28,7 +29,7 @@ public class Search {
 
         try{
             return ApiClient.getInstance().get(ENDPOINT, params, SearchDto.class);
-        }catch (InterruptedException | IOException e){
+        }catch (InterruptedException | IOException | ApiResponseException e){
             System.err.println("Error while fetching courses: " + e.getMessage());
             return Optional.empty();
         }

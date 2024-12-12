@@ -2,12 +2,15 @@ package org.example.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.example.exception.ApiResponseException;
 
 import java.io.IOException;
 import java.net.URI;
+import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Optional;
 
@@ -32,9 +35,9 @@ public class ApiClient {
      * @param endpoint Endpoint to call from API
      * @param params Map of parameters to include in the request URL
      * @param responseType Response body type
-     * @return Deserialized response object if successful, otherwise, an empty Optional
+     * @return Deserialized response object if successful, otherwise, an ApiResponseException is thrown
      */
-    public <T> Optional<T> get(String endpoint, Map<String, String> params, Class<T> responseType) throws IOException, InterruptedException {
+    public <T> Optional<T> get(String endpoint, Map<String, String> params, Class<T> responseType) throws IOException, InterruptedException, ApiResponseException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(getFinalUrl(endpoint, params)))
                 .GET()
@@ -46,10 +49,8 @@ public class ApiClient {
         }
         else{
             MessageResponse messageResponse = objectMapper.readValue(response.body(), MessageResponse.class);
-            System.err.println("Error while fetching courses: " + messageResponse.message());
+            throw new ApiResponseException(messageResponse.message());
         }
-
-        return Optional.empty();
     }
 
     /**
@@ -68,7 +69,7 @@ public class ApiClient {
 
             params.forEach((k, v) -> {
                 if(k != null && v != null){
-                    urlBuilder.append(k).append("=").append(v).append("&");
+                    urlBuilder.append(k).append("=").append(URLEncoder.encode(v, StandardCharsets.UTF_8)).append("&");
                 }
             });
 
