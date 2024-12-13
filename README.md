@@ -1,12 +1,13 @@
 # CommonLetterSubjectSorter
 <h3>Recruitment task</h3>
 
-This project provides functionality for finding and sorting subjects based on the number of common letters between the subject name and the instructor's name. It can be used to analyze a list of subjects, calculate the number of common letters in their names and instructors' names, and return the top N subjects with the most common letters.
+This project provides functionality for finding and sorting courses based on the number of common letters between the course name and the lecturer's name. It can be used to analyze a list of courses, calculate the number of common letters in their names and lecturers' names, and return the top N courses with the most common letters.
 
 ## Features
 
-- **Calculate common letters**: Compares the subject name and instructor name to calculate the number of common letters.
-- **Find top N subjects**: Sorts subjects by the number of common letters in ascending order and returns the top N subjects.
+- **Calculate common letters**: Compares the course name and lecturer name to calculate the number of common letters.
+- **Find top N courses**: Sorts courses by the number of common letters in ascending order and returns the top N courses.
+- **Fetching data from USOS Api**
 
 ## Requirements
 
@@ -19,12 +20,14 @@ This project provides functionality for finding and sorting subjects based on th
 - **jUnit 5.9.1**
 - **Stream API**
 - **Records**
+- **HttpClient**
+- **Jackson**
 - **Intellij IDEA**
 
 ## Structure of the code
 
-- **Subject**: A class representing a subject, containing fields for the subject name and instructor's name.
-- **SubjectResult**: A class representing a result, containing a Subject object and the number of common letters.
+- **Course**: A class representing a course, containing fields for the course name and lecturer's name.
+- **CourseResult**: A class representing a result, containing a Course object and the number of common letters.
 - **LetterCounter**: A utility class that calculates the number of letters in string.
 - **CommonLetterCounter**: A utility class that calculates the number of common letters between two strings.
-- **SubjectComparator**: A class that contains the main logic for finding the top subjects based on common letters.
+- **CourseResultContainer**: A class that contains the sorted set of CourseResult by value of commonLetters
