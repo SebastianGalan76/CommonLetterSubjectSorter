@@ -31,7 +31,7 @@ public class SubjectComparatorTest {
         assertEquals(1, result.size(), "Wynik dla jednego przedmiotu powinien mieć jeden element");
 
         CourseResult topCourseResult = result.get(0);
-        assertEquals(course.name() +" "+ course.instructor(), topCourseResult.course().name() +" "+ topCourseResult.course().instructor());
+        assertEquals(course.name() +" "+ course.lecturer(), topCourseResult.course().name() +" "+ topCourseResult.course().lecturer());
     }
 
     @Test

@@ -21,4 +21,9 @@ public record CourseResult(Course course, int commonLetters) implements Comparab
     public int hashCode() {
         return Objects.hash(course);
     }
+
+    @Override
+    public String toString(){
+        return "Common Letters: "+commonLetters+",\t Course name: "+course.name()+",\t Lecturer: "+course.lecturer();
+    }
 }

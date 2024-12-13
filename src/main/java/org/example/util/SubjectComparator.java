@@ -22,7 +22,7 @@ public class SubjectComparator {
         }
 
         courses.forEach(subject -> {
-            int commonLetters = CommonLetterCounter.countCommonLetters(subject.name(), subject.instructor());
+            int commonLetters = CommonLetterCounter.countCommonLetters(subject.name(), subject.lecturer());
             results.add(new CourseResult(subject, commonLetters));
         });
 
